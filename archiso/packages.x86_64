@@ -72,7 +72,7 @@ xf86-video-nouveau
 xf86-video-vesa
 xf86-input-libinput
 xf86-input-synaptics
-libva-mesa-driver
+# libva-mesa-driver is now part of mesa upstream
 libva-utils
 xorg-server
 xorg-xinit
@@ -104,9 +104,12 @@ gvfs-smb
 gvfs-nfs
 chrony
 
-# --- Calamares installer -----------------------------------------------------
-calamares
-ckbcomp
+# --- Calamares installer (AUR / chaotic-aur, NOT in official repos) ---------
+# These are pulled in at build time by scripts/build.sh from the AUR via
+# `yay -S calamares` once it's running inside the container. For the
+# initial bring-up build we skip them so the package list resolves.
+# calamares
+# ckbcomp
 hwinfo
 squashfs-tools
 
@@ -162,7 +165,7 @@ konsole
 dolphin
 discover
 flatpak
-neofetch
+# neofetch (removed from official repos, replaced by fastfetch)
 htop
 btop
 fastfetch
@@ -209,10 +212,10 @@ darkhttpd
 ddrescue
 dmidecode
 dmraid
-gnu-netcat
+# gnu-netcat (AUR-only, replaced by openbsd-netcat)
+openbsd-netcat
 hdparm
-ipw2100-fw
-ipw2200-fw
+# ipw2100-fw, ipw2200-fw (moved out of official repos; ship via linux-firmware)
 irssi
 jfsutils
 kbd

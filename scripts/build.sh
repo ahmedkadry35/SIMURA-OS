@@ -70,6 +70,11 @@ pacman -Sy --noconfirm --needed \
     librsvg \
     imagemagick \
     rsync \
+    python-pip \
+    python-build \
+    python-wheel \
+    python-installer \
+    python-setuptools \
     base-devel >/dev/null
 
 echo "==> rendering branding PNGs"
@@ -168,7 +173,8 @@ cp installer/calamares/modules/*.conf \
 # repos catch up.
 echo "==> building simura-assistant wheel"
 mkdir -p "${profile}/airootfs/opt/simura/wheels"
-( cd ai-assistant && pip wheel --no-deps --wheel-dir="${profile}/airootfs/opt/simura/wheels" . )
+( cd ai-assistant && python -m build --wheel --no-isolation \
+    --outdir "${profile}/airootfs/opt/simura/wheels" . )
 
 # Drop a tiny launcher script in /usr/local/bin so the .desktop file can find it.
 cat > "${profile}/airootfs/usr/local/bin/simura-assistant" <<EOF_LAUNCH
