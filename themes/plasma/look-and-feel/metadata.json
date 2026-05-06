@@ -4,7 +4,7 @@
             { "Name": "SIMURA OS", "Email": "simura@example.invalid" }
         ],
         "Category": "Plasma Look and Feel",
-        "Description": "Default SIMURA OS Look and Feel — futuristic deep-space + cyan accent.",
+        "Description": "Default SIMURA OS Look and Feel — deep-space violet, Win11-style center dock, AI assistant launcher.",
         "Id": "org.simura.desktop",
         "Name": "SIMURA",
         "Version": "1.0",

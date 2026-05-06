@@ -1,7 +1,7 @@
 /*
  *  SIMURA OS — SDDM login theme (Qt Quick / QML).
- *  A minimal, futuristic login screen: dark gradient background, soft
- *  cyan glow behind the logo, single username/password field, a small
+ *  A minimal, futuristic login screen: deep-space gradient background, soft
+ *  violet glow behind the logo, single username/password field, a small
  *  session selector and a power menu in the corner.
  */
 import QtQuick 2.15
@@ -13,7 +13,7 @@ Rectangle {
     id: root
     width: 1920
     height: 1080
-    color: "#000814"
+    color: "#06031a"
 
     LayoutMirroring.enabled: Qt.locale().textDirection == Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
@@ -30,7 +30,7 @@ Rectangle {
         color: "transparent"
         opacity: 0.25
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "#00e5ff" }
+            GradientStop { position: 0.0; color: "#7c4dff" }
             GradientStop { position: 1.0; color: "#00000000" }
         }
     }
@@ -54,7 +54,7 @@ Rectangle {
         anchors.topMargin: 24
         anchors.horizontalCenter: parent.horizontalCenter
         text: "SIMURA OS"
-        color: "#00e5ff"
+        color: "#c39bff"
         font.family: "Roboto"
         font.pixelSize: 36
         font.letterSpacing: 6
@@ -69,8 +69,8 @@ Rectangle {
         width: 420
         height: 240
         radius: 16
-        color: "#0a0e2a"
-        border.color: "#00e5ff"
+        color: "#1a0a3f"
+        border.color: "#7c4dff"
         border.width: 1
 
         ColumnLayout {
@@ -135,7 +135,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.bottom: parent.bottom
         anchors.margins: 24
-        color: "#7a8aa6"
+        color: "#8c80b4"
         font.family: "JetBrains Mono"
         font.pixelSize: 14
         text: Qt.formatDateTime(new Date(), "ddd dd MMM  hh:mm")

@@ -1,65 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  SIMURA OS logo.
-  Concept: a hexagonal "neural" core (S monogram inside) wrapped by a thin
-  cyan halo, conveying AI + structured architecture. Pure SVG — scales
-  cleanly to all icon sizes used by the system (16, 22, 24, 32, 48, 64,
-  128, 256, 512).
+  SIMURA OS logo (v2).
+  A bold violet-gradient stylized "S" mark with an outer halo. Designed to
+  read clearly at icon sizes (16, 22, 24, 32, 48, 64, 128, 256, 512) and to
+  match the SIMURA OS visual identity (deep-space + violet/indigo accent).
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="halo" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#00e5ff"/>
-      <stop offset="50%" stop-color="#00b8ff"/>
+    <linearGradient id="sLetter" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#c39bff"/>
+      <stop offset="45%"  stop-color="#7c4dff"/>
+      <stop offset="100%" stop-color="#3a1bb0"/>
+    </linearGradient>
+    <linearGradient id="sLetterStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#e6d6ff"/>
       <stop offset="100%" stop-color="#7c4dff"/>
     </linearGradient>
-    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0e2a"/>
-      <stop offset="100%" stop-color="#000814"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0%"   stop-color="#7c4dff" stop-opacity="0.35"/>
+      <stop offset="60%"  stop-color="#3a1bb0" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#7c4dff" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <!-- soft ambient glow -->
-  <circle cx="256" cy="256" r="240" fill="url(#glow)"/>
+  <!-- ambient halo -->
+  <circle cx="256" cy="256" r="248" fill="url(#halo)"/>
 
-  <!-- outer halo ring -->
-  <polygon points="256,32 462,144 462,368 256,480 50,368 50,144"
-           fill="none" stroke="url(#halo)" stroke-width="6"
-           stroke-linejoin="round"/>
+  <!-- The bold "S" mark, drawn as a single sweeping path with a soft-rounded -->
+  <!-- mid-section, evoking flow and continuity. -->
+  <path d="M 360 152
+           C 360 116, 322 92,  280 92
+           L 220 92
+           C 168 92,  128 132, 128 184
+           C 128 232, 164 264, 220 268
+           L 296 272
+           C 332 276, 348 296, 348 324
+           C 348 360, 312 388, 268 388
+           L 168 388
+           C 156 388, 152 396, 152 408
+           L 152 420
+           C 152 432, 156 440, 168 440
+           L 280 440
+           C 348 440, 396 396, 396 332
+           C 396 276, 360 240, 296 232
+           L 220 224
+           C 196 220, 184 208, 184 188
+           C 184 168, 200 152, 224 152
+           Z"
+        fill="url(#sLetter)"
+        stroke="url(#sLetterStroke)" stroke-width="4"
+        stroke-linejoin="round"/>
 
-  <!-- inner hex core -->
-  <polygon points="256,80 416,168 416,344 256,432 96,344 96,168"
-           fill="url(#core)" stroke="#00e5ff" stroke-width="3"
-           stroke-linejoin="round"/>
-
-  <!-- circuit lines -->
-  <g stroke="#00e5ff" stroke-width="2" fill="none" opacity="0.65">
-    <path d="M 96,256 L 160,256"/>
-    <path d="M 416,256 L 352,256"/>
-    <path d="M 256,80 L 256,140"/>
-    <path d="M 256,432 L 256,372"/>
-    <circle cx="160" cy="256" r="4" fill="#00e5ff" stroke="none"/>
-    <circle cx="352" cy="256" r="4" fill="#00e5ff" stroke="none"/>
-    <circle cx="256" cy="140" r="4" fill="#00e5ff" stroke="none"/>
-    <circle cx="256" cy="372" r="4" fill="#00e5ff" stroke="none"/>
-  </g>
-
-  <!-- "S" monogram, simplified geometric form -->
-  <path d="M 320,180
-           L 220,180
-           Q 188,180 188,212
-           Q 188,244 220,244
-           L 292,244
-           Q 324,244 324,276
-           Q 324,308 292,308
-           L 192,308"
-        fill="none" stroke="url(#halo)" stroke-width="22"
-        stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- subtle inner pulse dot -->
-  <circle cx="256" cy="256" r="6" fill="#00e5ff"/>
+  <!-- subtle inner highlight -->
+  <path d="M 360 152
+           C 360 116, 322 92,  280 92
+           L 220 92"
+        fill="none" stroke="#e6d6ff" stroke-opacity="0.35"
+        stroke-width="6" stroke-linecap="round"/>
 </svg>

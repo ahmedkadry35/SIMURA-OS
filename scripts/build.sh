@@ -83,7 +83,7 @@ bash scripts/render-branding.sh
 # Create a small progress_bar.png Plymouth needs (320×4 cyan).
 mkdir -p branding/.rendered
 if command -v convert >/dev/null 2>&1; then
-    convert -size 320x4 xc:"#00e5ff" branding/.rendered/progress_bar.png
+    convert -size 320x4 xc:"#7c4dff" branding/.rendered/progress_bar.png
 fi
 
 echo "==> assembling archiso profile in /tmp/profile"
@@ -96,7 +96,6 @@ chmod 0440 "${profile}/airootfs/etc/sudoers.d/simura"
 mkdir -p "${profile}/airootfs/var/lib/simura"
 
 # Drop branding PNGs into the live filesystem.
-mkdir -p "${profile}/airootfs/usr/share/icons/hicolor/256x256/apps"
 mkdir -p "${profile}/airootfs/usr/share/wallpapers/SIMURA/contents/images"
 mkdir -p "${profile}/airootfs/usr/share/plymouth/themes/simura"
 mkdir -p "${profile}/airootfs/usr/share/grub/themes/simura"
@@ -110,10 +109,17 @@ mkdir -p "${profile}/airootfs/etc/skel/.local/share/color-schemes"
 mkdir -p "${profile}/airootfs/etc/skel/.local/share/konsole"
 mkdir -p "${profile}/airootfs/usr/share/plasma/look-and-feel/org.simura.desktop/contents/layouts"
 
-cp branding/.rendered/simura-logo-256.png \
-   "${profile}/airootfs/usr/share/icons/hicolor/256x256/apps/simura-logo.png"
-cp branding/.rendered/simura-logo-256.png \
-   "${profile}/airootfs/usr/share/icons/hicolor/256x256/apps/simura-assistant.png"
+# Install the SIMURA logo at every hicolor size that we render so Plasma /
+# panel widgets / window decorations all pick the best fit.
+for sz in 16 22 24 32 48 64 96 128 192 256 384 512 1024; do
+    src="branding/.rendered/simura-logo-${sz}.png"
+    if [ -f "$src" ]; then
+        dst="${profile}/airootfs/usr/share/icons/hicolor/${sz}x${sz}/apps"
+        mkdir -p "$dst"
+        cp "$src" "${dst}/simura-logo.png"
+        cp "$src" "${dst}/simura-assistant.png"
+    fi
+done
 cp branding/.rendered/wallpaper-default-3840x2160.png \
    "${profile}/airootfs/usr/share/wallpapers/SIMURA/contents/images/3840x2160.png"
 cp branding/.rendered/wallpaper-dark-3840x2160.png \

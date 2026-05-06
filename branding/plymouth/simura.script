@@ -8,8 +8,8 @@
 #   - a thin progress bar sits below the logo
 #   - status messages render at the bottom 20% of the screen
 
-Window.SetBackgroundTopColor   (0.000, 0.031, 0.078);  # #000814
-Window.SetBackgroundBottomColor(0.000, 0.071, 0.200);  # #001233
+Window.SetBackgroundTopColor   (0.024, 0.012, 0.102);  # #06031a
+Window.SetBackgroundBottomColor(0.063, 0.027, 0.278);  # #100747
 
 screen_width  = Window.GetWidth();
 screen_height = Window.GetHeight();

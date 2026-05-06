@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SIMURA OS — minimal dark variant, no logo, just brand-color ambience. -->
+<!--
+  SIMURA OS — minimal dark variant.
+  Pure deep-space, no logo. Same palette as the default wallpaper so the look-
+  and-feel stays consistent across virtual desktops / lock screen.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" width="3840" height="2160">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%"  stop-color="#000814"/>
-      <stop offset="100%" stop-color="#03102a"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#06031a"/>
+      <stop offset="50%"  stop-color="#100747"/>
+      <stop offset="100%" stop-color="#06021a"/>
     </linearGradient>
-    <radialGradient id="orb" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%"  stop-color="#00e5ff" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    <radialGradient id="orb1" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#7c4dff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#7c4dff" stop-opacity="0"/>
     </radialGradient>
-    <pattern id="dots" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-      <circle cx="24" cy="24" r="0.8" fill="#00e5ff" fill-opacity="0.16"/>
+    <radialGradient id="orb2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#a26bff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#a26bff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="stars" x="0" y="0" width="320" height="320" patternUnits="userSpaceOnUse">
+      <circle cx="50"  cy="80"  r="0.8" fill="#ffffff" fill-opacity="0.7"/>
+      <circle cx="220" cy="60"  r="0.5" fill="#cdb4ff" fill-opacity="0.5"/>
+      <circle cx="160" cy="220" r="1.0" fill="#ffffff" fill-opacity="0.8"/>
+      <circle cx="290" cy="280" r="0.6" fill="#a78bff" fill-opacity="0.5"/>
     </pattern>
   </defs>
   <rect width="3840" height="2160" fill="url(#bg)"/>
-  <rect width="3840" height="2160" fill="url(#dots)"/>
-  <ellipse cx="2880" cy="540" rx="900" ry="520" fill="url(#orb)"/>
-  <ellipse cx="960"  cy="1620" rx="900" ry="520" fill="url(#orb)" opacity="0.7"/>
+  <rect width="3840" height="2160" fill="url(#stars)"/>
+  <ellipse cx="2880" cy="540" rx="900" ry="520" fill="url(#orb1)"/>
+  <ellipse cx="960"  cy="1620" rx="900" ry="520" fill="url(#orb2)"/>
 </svg>

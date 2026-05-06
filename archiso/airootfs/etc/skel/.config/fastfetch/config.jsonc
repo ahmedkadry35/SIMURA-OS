@@ -4,11 +4,11 @@
     "logo": {
         "type": "file",
         "source": "/usr/share/simura/neofetch-logo.txt",
-        "color": { "1": "cyan", "2": "blue", "3": "magenta" }
+        "color": { "1": "magenta", "2": "5", "3": "blue" }
     },
     "display": {
         "separator": "  ",
-        "color": { "keys": "cyan", "title": "cyan" }
+        "color": { "keys": "magenta", "title": "magenta" }
     },
     "modules": [
         "title",
