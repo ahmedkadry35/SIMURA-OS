@@ -1,0 +1,13 @@
+[Unit]
+Description=SIMURA Assistant background tray service
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/simura-assistant --quick
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

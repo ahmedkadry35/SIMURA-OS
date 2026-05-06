@@ -1,0 +1,16 @@
+[Unit]
+Description=SIMURA OS first-boot configuration (ufw, fail2ban, ollama, fonts)
+ConditionPathExists=!/var/lib/simura/firstboot.done
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/simura-firstboot
+StandardOutput=journal
+StandardError=journal
+TimeoutSec=900
+
+[Install]
+WantedBy=multi-user.target

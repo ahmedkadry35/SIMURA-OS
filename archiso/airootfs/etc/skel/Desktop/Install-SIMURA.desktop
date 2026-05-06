@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Install SIMURA OS
+GenericName=System Installer
+Comment=Install SIMURA OS to your hard drive (Calamares)
+Icon=calamares
+Exec=pkexec calamares
+Terminal=false
+Categories=System;Settings;
+Keywords=Install;Calamares;Setup;
+X-KDE-StartupNotify=true

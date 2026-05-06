@@ -1,0 +1,53 @@
+# SIMURA OS — KDE-wide defaults.
+# Selects the SIMURA color scheme, Kvantum widget style, Papirus icons, and
+# Roboto/JetBrains Mono fonts.
+
+[General]
+BrowserApplication=firefox.desktop
+ColorScheme=SIMURA
+Name=SIMURA
+TerminalApplication=konsole
+TerminalService=org.kde.konsole.desktop
+fixed=JetBrains Mono,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+font=Roboto,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+menuFont=Roboto,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+shadeSortColumn=true
+smallestReadableFont=Roboto,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+toolBarFont=Roboto,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[Icons]
+Theme=Papirus-Dark
+
+[KDE]
+LookAndFeelPackage=org.simura.desktop
+SingleClick=false
+contrast=4
+widgetStyle=kvantum
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=DetailTree
+
+[WM]
+activeBackground=0,8,20
+activeBlend=0,229,255
+activeForeground=230,241,255
+inactiveBackground=10,14,42
+inactiveBlend=122,138,166
+inactiveForeground=122,138,166

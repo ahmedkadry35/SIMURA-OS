@@ -1,0 +1,8 @@
+# SIMURA OS — earlyoom defaults.
+# earlyoom watches free memory + swap and sends SIGTERM (then SIGKILL) to the
+# largest memory hog *before* the kernel OOM killer kicks in. Without this,
+# Linux desktops can lock up for minutes under memory pressure.
+
+EARLYOOM_ARGS="--prefer '(^|/)(chrome|firefox|chromium|electron|node|java)$' \
+               --avoid '(^|/)(systemd|systemd-.*|sshd|plasmashell|kwin_(x11|wayland)|sddm)$' \
+               -m 5,2 -s 5,2 -r 60 -n -d"

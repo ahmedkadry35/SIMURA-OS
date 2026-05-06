@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# SIMURA OS — apply runtime performance tuning that can't be expressed in
+# /etc/sysctl.d/. Run as a oneshot systemd unit at boot.
+#
+# - CPU governor: "performance" on AC, "schedutil" on battery.
+# - I/O scheduler: "mq-deadline" for SSDs, "bfq" for rotating disks.
+# - Transparent Huge Pages: madvise (avoid latency spikes for desktop apps).
+
+set -euo pipefail
+
+log() { printf '[simura-performance] %s\n' "$*"; }
+
+# --- CPU governor -----------------------------------------------------------
+on_battery=0
+if [[ -d /sys/class/power_supply ]]; then
+    for ps in /sys/class/power_supply/*; do
+        type_file="${ps}/type"
+        [[ -f "${type_file}" ]] || continue
+        kind=$(cat "${type_file}")
+        if [[ "${kind}" == "Battery" ]]; then
+            online_file="${ps}/status"
+            if [[ -f "${online_file}" ]] && grep -qi 'discharging' "${online_file}"; then
+                on_battery=1
+            fi
+        fi
+    done
+fi
+
+if [[ ${on_battery} -eq 1 ]]; then
+    governor="schedutil"
+else
+    governor="performance"
+fi
+
+if compgen -G "/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" >/dev/null; then
+    log "setting CPU governor to ${governor}"
+    for g in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+        echo "${governor}" > "${g}" 2>/dev/null || true
+    done
+fi
+
+# --- I/O scheduler ----------------------------------------------------------
+for queue in /sys/block/*/queue; do
+    disk=$(basename "$(dirname "${queue}")")
+    [[ "${disk}" =~ ^(loop|ram|sr|fd) ]] && continue
+    rotational_file="${queue}/rotational"
+    scheduler_file="${queue}/scheduler"
+    [[ -f "${rotational_file}" && -f "${scheduler_file}" ]] || continue
+    rotational=$(cat "${rotational_file}" 2>/dev/null || echo 1)
+    available=$(cat "${scheduler_file}")
+    if [[ "${rotational}" == "0" ]]; then
+        for choice in mq-deadline none kyber; do
+            if [[ "${available}" == *"${choice}"* ]]; then
+                echo "${choice}" > "${scheduler_file}" 2>/dev/null || true
+                log "disk ${disk} (SSD) -> ${choice}"
+                break
+            fi
+        done
+    else
+        for choice in bfq mq-deadline; do
+            if [[ "${available}" == *"${choice}"* ]]; then
+                echo "${choice}" > "${scheduler_file}" 2>/dev/null || true
+                log "disk ${disk} (HDD) -> ${choice}"
+                break
+            fi
+        done
+    fi
+done
+
+# --- Transparent Huge Pages -------------------------------------------------
+if [[ -f /sys/kernel/mm/transparent_hugepage/enabled ]]; then
+    echo madvise > /sys/kernel/mm/transparent_hugepage/enabled || true
+    log "THP -> madvise"
+fi
+
+log "done"

@@ -1,0 +1,68 @@
+#
+# SIMURA OS — GRUB theme.
+# Installed to /boot/grub/themes/simura/ on disk; archiso uses
+# /efiboot/loader plus its own grub.cfg, so this theme is primarily for the
+# *installed* system, not the live ISO bootloader.
+#
+
+# General settings
+title-text:                ""
+desktop-image:             "background.png"
+desktop-color:             "#000814"
+terminal-box:              "terminal_box_*.png"
+terminal-font:             "Unifont Regular 16"
+terminal-left:             "10%"
+terminal-top:              "10%"
+terminal-width:            "80%"
+terminal-height:           "80%"
+terminal-border:           "0"
+title-color:               "#00e5ff"
+title-font:                "Unifont Regular 16"
+message-color:             "#e6f1ff"
+message-bg-color:          "#000814"
+
+# Progress bar at the bottom
++ progress_bar {
+    id = "__timeout__"
+    left = 25%
+    top = 92%
+    width = 50%
+    height = 8
+    show_text = true
+    text_color = "#e6f1ff"
+    text = "@TIMEOUT_NOTIFICATION_LONG@"
+    fg_color = "#00e5ff"
+    bg_color = "#001233"
+    border_color = "#00b8ff"
+}
+
+# Boot menu
++ boot_menu {
+    left = 25%
+    top = 30%
+    width = 50%
+    height = 50%
+    item_color = "#7a8aa6"
+    selected_item_color = "#00e5ff"
+    item_height = 36
+    item_padding = 10
+    item_spacing = 8
+    icon_width = 24
+    icon_height = 24
+    item_icon_space = 8
+    selected_item_pixmap_style = "select_*.png"
+    scrollbar = true
+    scrollbar_thumb = "scrollbar_*.png"
+    scrollbar_width = 12
+}
+
+# Header label
++ label {
+    left = 0
+    top = 8%
+    width = 100%
+    align = "center"
+    color = "#00e5ff"
+    font = "Unifont Regular 16"
+    text = "SIMURA OS"
+}

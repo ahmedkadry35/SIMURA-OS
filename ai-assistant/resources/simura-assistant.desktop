@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=SIMURA Assistant
+GenericName=AI Assistant
+Comment=Local AI assistant powered by Ollama, built into SIMURA OS.
+Icon=simura-assistant
+Exec=simura-assistant %U
+Terminal=false
+Categories=Utility;Development;Qt;Office;
+StartupNotify=true
+StartupWMClass=simura-assistant
+Keywords=AI;Assistant;Chat;Ollama;LLM;
+X-KDE-StartupNotify=true

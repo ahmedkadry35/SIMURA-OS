@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Kvantum themes ship a small SVG with named element ids that Kvantum reads
+  to render every UI primitive (buttons, frames, sliders, etc). For brevity,
+  this minimal stub piggy-backs on the system's Default theme — the real
+  branding comes from `SIMURA.kvconfig` color references via the SIMURA color
+  scheme. Distros that want a fully custom Kvantum SVG can replace this
+  file. See https://github.com/tsujan/Kvantum/blob/master/Kvantum/style/HOW-TO-CREATE-A-KVANTUM-THEME.md
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <rect width="16" height="16" fill="#000814"/>
+</svg>

@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=SIMURA
+Description=Default SIMURA OS login theme
+Author=SIMURA OS
+Copyright=(c) 2026, SIMURA OS contributors
+License=GPL-3.0
+Type=sddm-theme
+Version=1.0
+Website=https://github.com/ahmedkadry35/SIMURA-OS
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=simura@example.invalid
+Theme-Id=simura
+Theme-API=2.0

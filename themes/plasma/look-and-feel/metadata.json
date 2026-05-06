@@ -1,0 +1,16 @@
+{
+    "KPlugin": {
+        "Authors": [
+            { "Name": "SIMURA OS", "Email": "simura@example.invalid" }
+        ],
+        "Category": "Plasma Look and Feel",
+        "Description": "Default SIMURA OS Look and Feel — futuristic deep-space + cyan accent.",
+        "Id": "org.simura.desktop",
+        "Name": "SIMURA",
+        "Version": "1.0",
+        "Website": "https://github.com/ahmedkadry35/SIMURA-OS"
+    },
+    "X-Plasma-APIVersion": "2.0",
+    "X-KDE-PluginInfo-License": "GPL-3.0",
+    "X-Plasma-MainScript": "defaults"
+}

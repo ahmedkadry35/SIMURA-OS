@@ -1,0 +1,13 @@
+[Unit]
+Description=SIMURA OS performance defaults (CPU governor, IO scheduler, transparent hugepages)
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/simura-performance
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

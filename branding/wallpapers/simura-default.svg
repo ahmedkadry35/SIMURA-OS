@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SIMURA OS default wallpaper.
+  3840x2160 (4K) so it scales down cleanly to lower-DPI displays.
+  Aesthetic: deep-space gradient + faint hex grid + subtle diagonal scan-lines
+  + a centered "neural pulse" glow in the brand cyan.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" width="3840" height="2160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#000814"/>
+      <stop offset="50%" stop-color="#001233"/>
+      <stop offset="100%" stop-color="#000814"/>
+    </linearGradient>
+    <radialGradient id="pulse" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0%"  stop-color="#00e5ff" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="#0099cc" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="hex" x="0" y="0" width="120" height="104" patternUnits="userSpaceOnUse">
+      <polygon points="60,0 120,30 120,75 60,104 0,75 0,30"
+               fill="none" stroke="#00e5ff" stroke-opacity="0.06" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="scan" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="4" height="1" fill="#00e5ff" fill-opacity="0.02"/>
+    </pattern>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <rect width="3840" height="2160" fill="url(#hex)"/>
+  <rect width="3840" height="2160" fill="url(#scan)"/>
+  <ellipse cx="1920" cy="1080" rx="1400" ry="800" fill="url(#pulse)"/>
+
+  <!-- centered logo, scaled and positioned at 35% width -->
+  <g transform="translate(1664, 824) scale(2.5)" opacity="0.96">
+    <polygon points="256,32 462,144 462,368 256,480 50,368 50,144"
+             fill="none" stroke="#00e5ff" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="256,80 416,168 416,344 256,432 96,344 96,168"
+             fill="#00081420" stroke="#00e5ff" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 320,180 L 220,180 Q 188,180 188,212 Q 188,244 220,244 L 292,244 Q 324,244 324,276 Q 324,308 292,308 L 192,308"
+          fill="none" stroke="#00e5ff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
