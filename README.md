@@ -1,0 +1,1 @@
+# SIMURA OS\n\nProject bootstrap. See open PRs for the full implementation.
