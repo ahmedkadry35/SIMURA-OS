@@ -1,0 +1,8 @@
+[Flatpak Repo]
+Title=Flathub
+Url=https://dl.flathub.org/repo/
+Homepage=https://flathub.org/
+Comment=Central repository of Flatpak applications
+Description=Central repository of Flatpak applications
+Icon=https://flathub.org/img/logo.svg
+GPGKey=mDMEYW6c1RYJKwYBBAHaRw8BAQdAo+ASxdGhwprB80lD8a/zKFmPtR9/AHBL+/vuHrwYcyW0KkZsYXRodWIgU2lnbmluZyBLZXkgPGZsYXRodWJAZmxhdGh1Yi5vcmc+iJYEExYIAD4WIQQEPoH0fH7nGPMwhZWGdSXdttNG4QUCYW6c1QIbAwUJEswDAAULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRCGdSXdttNG4eEjAQDQTPMQ51VxmrgIvMaeKE7eMd3kwm9o8Mj9kqKRrYAFfQEAyMR60dpWaP0lVOQzBkHHLccNijyDXxgmpLPlu3a4zg8=

@@ -1,0 +1,45 @@
+[General]
+ColorScheme=SIMURA
+Name=SIMURA
+shadeSortColumn=true
+TerminalApplication=konsole
+TerminalService=org.kde.konsole.desktop
+
+[Icons]
+Theme=Papirus-Dark
+
+[KDE]
+LookAndFeelPackage=org.simura.desktop
+SingleClick=false
+ShowDeleteCommand=false
+contrast=4
+widgetStyle=kvantum
+ColorScheme=SIMURA
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=DetailTree
+
+[WM]
+activeBackground=18,9,55
+activeBlend=124,77,255
+activeForeground=230,224,255
+inactiveBackground=10,4,32
+inactiveBlend=140,128,180
+inactiveForeground=140,128,180

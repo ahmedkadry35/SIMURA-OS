@@ -1,0 +1,13 @@
+# SIMURA OS — leaves the upstream ufw before.rules untouched but ships an
+# overlay file (this one) that the post-install script can use as a reference
+# for the default ruleset:
+#
+#     default deny incoming
+#     default allow outgoing
+#     allow OUT 53/udp                   # DNS
+#     allow OUT 80,443/tcp               # HTTP(S)
+#     allow IN  on lo
+#     allow IN  from 127.0.0.0/8
+#
+# These are the rules `simura-firstboot` will apply via `ufw enable` once the
+# user installs SIMURA OS to disk.

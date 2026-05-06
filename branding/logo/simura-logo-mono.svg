@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Monochrome variant of the SIMURA "S" logo, suitable for symbolic icons. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <path d="M 360 152
+           C 360 116, 322 92,  280 92
+           L 220 92
+           C 168 92,  128 132, 128 184
+           C 128 232, 164 264, 220 268
+           L 296 272
+           C 332 276, 348 296, 348 324
+           C 348 360, 312 388, 268 388
+           L 168 388
+           C 156 388, 152 396, 152 408
+           L 152 420
+           C 152 432, 156 440, 168 440
+           L 280 440
+           C 348 440, 396 396, 396 332
+           C 396 276, 360 240, 296 232
+           L 220 224
+           C 196 220, 184 208, 184 188
+           C 184 168, 200 152, 224 152
+           Z"
+        fill="currentColor"/>
+</svg>

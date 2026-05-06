@@ -1,0 +1,18 @@
+# SIMURA OS — global shortcuts. Maps Super+A to the SIMURA Assistant
+# quick-launch overlay.
+
+[simura-assistant.desktop]
+_k_friendly_name=SIMURA Assistant
+_launch=Meta+A,none,Open SIMURA Assistant
+
+[org.kde.spectacle.desktop]
+_k_friendly_name=Spectacle
+_launch=Print,Print,Take Screenshot
+
+[org.kde.dolphin.desktop]
+_k_friendly_name=Dolphin
+_launch=Meta+E,none,Open File Manager
+
+[org.kde.konsole.desktop]
+_k_friendly_name=Konsole
+_launch=Meta+T,none,Open Terminal

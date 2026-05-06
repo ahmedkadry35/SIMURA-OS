@@ -1,0 +1,40 @@
+# Maintainer: SIMURA OS <https://github.com/ahmedkadry35/SIMURA-OS>
+pkgname=simura-assistant
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="SIMURA OS — local AI assistant powered by Ollama (PyQt6 UI)"
+arch=('any')
+url="https://github.com/ahmedkadry35/SIMURA-OS"
+license=('GPL3')
+depends=(
+    'python>=3.11'
+    'python-pyqt6'
+    'python-requests'
+    'python-rich'
+    'python-yaml'
+    'python-psutil'
+    'python-watchdog'
+    'hicolor-icon-theme'
+)
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+optdepends=(
+    'ollama: required for the assistant to actually answer prompts'
+)
+source=()
+sha256sums=()
+
+build() {
+    cd "$srcdir/.."
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "$srcdir/.."
+    python -m installer --destdir="$pkgdir" dist/*.whl
+
+    install -Dm644 resources/simura-assistant.desktop \
+        "$pkgdir/usr/share/applications/simura-assistant.desktop"
+    install -Dm644 resources/simura-assistant.png \
+        "$pkgdir/usr/share/icons/hicolor/256x256/apps/simura-assistant.png" \
+        || true   # icon is generated at build time; skip if missing
+}

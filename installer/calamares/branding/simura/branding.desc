@@ -1,0 +1,36 @@
+---
+componentName: simura
+
+welcomeStyleCalamares: true
+welcomeExpandingLogo:  true
+
+windowExpanding: normal
+windowSize:      900px,600px
+windowPlacement: center
+
+strings:
+    productName:         "SIMURA OS"
+    shortProductName:    "SIMURA"
+    version:             "rolling"
+    shortVersion:        "rolling"
+    versionedName:       "SIMURA OS rolling"
+    shortVersionedName:  "SIMURA"
+    bootloaderEntryName: "SIMURA OS"
+    productUrl:          "https://github.com/ahmedkadry35/SIMURA-OS"
+    supportUrl:          "https://github.com/ahmedkadry35/SIMURA-OS/issues"
+    releaseNotesUrl:     "https://github.com/ahmedkadry35/SIMURA-OS/releases"
+    knownIssuesUrl:      "https://github.com/ahmedkadry35/SIMURA-OS/issues"
+    donateUrl:           ""
+
+images:
+    productLogo:    "logo.png"
+    productIcon:    "logo.png"
+    productWelcome: "welcome.png"
+
+slideshow: "show.qml"
+
+style:
+    sidebarBackground:    "#06031a"
+    sidebarText:          "#e6e0ff"
+    sidebarTextSelect:    "#ffffff"
+    sidebarTextHighlight: "#7c4dff"

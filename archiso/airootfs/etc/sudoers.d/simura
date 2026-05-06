@@ -1,0 +1,7 @@
+# SIMURA OS — sudoers rules for the live ISO.
+# The "simura" user (created on the live ISO via mkarchiso post-build) gets
+# password-less sudo so the live environment is usable. The Calamares
+# installer requires a password for the user it creates on disk.
+
+simura ALL=(ALL:ALL) NOPASSWD: ALL
+Defaults env_keep += "PATH"

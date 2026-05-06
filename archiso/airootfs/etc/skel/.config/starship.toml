@@ -1,0 +1,43 @@
+# SIMURA OS — default Starship prompt configuration.
+# Violet/amethyst accents that match the SIMURA brand palette.
+
+format = """
+[╭─](bold purple)$username[@](bold purple)$hostname[ ](fg:purple)$directory$git_branch$git_status$cmd_duration
+[╰─](bold purple)$character """
+
+add_newline = false
+
+[username]
+style_user = "bold purple"
+style_root = "bold red"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[$hostname](bold magenta)"
+disabled = false
+
+[directory]
+style = "bold magenta"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bold cyan"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style)) '
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 1000
+format = "[took $duration](yellow) "
+
+[character]
+success_symbol = "[❯](bold purple)"
+error_symbol   = "[❯](bold red)"

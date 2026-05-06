@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SIMURA OS logo (v2).
+  A bold violet-gradient stylized "S" mark with an outer halo. Designed to
+  read clearly at icon sizes (16, 22, 24, 32, 48, 64, 128, 256, 512) and to
+  match the SIMURA OS visual identity (deep-space + violet/indigo accent).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sLetter" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#c39bff"/>
+      <stop offset="45%"  stop-color="#7c4dff"/>
+      <stop offset="100%" stop-color="#3a1bb0"/>
+    </linearGradient>
+    <linearGradient id="sLetterStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#e6d6ff"/>
+      <stop offset="100%" stop-color="#7c4dff"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0%"   stop-color="#7c4dff" stop-opacity="0.35"/>
+      <stop offset="60%"  stop-color="#3a1bb0" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#7c4dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ambient halo -->
+  <circle cx="256" cy="256" r="248" fill="url(#halo)"/>
+
+  <!-- The bold "S" mark, drawn as a single sweeping path with a soft-rounded -->
+  <!-- mid-section, evoking flow and continuity. -->
+  <path d="M 360 152
+           C 360 116, 322 92,  280 92
+           L 220 92
+           C 168 92,  128 132, 128 184
+           C 128 232, 164 264, 220 268
+           L 296 272
+           C 332 276, 348 296, 348 324
+           C 348 360, 312 388, 268 388
+           L 168 388
+           C 156 388, 152 396, 152 408
+           L 152 420
+           C 152 432, 156 440, 168 440
+           L 280 440
+           C 348 440, 396 396, 396 332
+           C 396 276, 360 240, 296 232
+           L 220 224
+           C 196 220, 184 208, 184 188
+           C 184 168, 200 152, 224 152
+           Z"
+        fill="url(#sLetter)"
+        stroke="url(#sLetterStroke)" stroke-width="4"
+        stroke-linejoin="round"/>
+
+  <!-- subtle inner highlight -->
+  <path d="M 360 152
+           C 360 116, 322 92,  280 92
+           L 220 92"
+        fill="none" stroke="#e6d6ff" stroke-opacity="0.35"
+        stroke-width="6" stroke-linecap="round"/>
+</svg>

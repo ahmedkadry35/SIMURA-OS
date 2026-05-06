@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SIMURA
+Description=SIMURA OS boot splash — pulsing cyan hex monogram on deep-space background.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/simura
+ScriptFile=/usr/share/plymouth/themes/simura/simura.script

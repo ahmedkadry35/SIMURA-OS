@@ -1,0 +1,38 @@
+# SIMURA OS — curated Flatpak app set.
+# These are NOT installed by default in the live ISO (the squashfs would
+# balloon). The "Welcome to SIMURA" app offers to install them on first run
+# from this list. One app per line, in `flatpak install` arg form.
+
+# Browsers
+org.mozilla.firefox
+
+# Office
+org.libreoffice.LibreOffice
+
+# Communication
+org.signal.Signal
+com.discordapp.Discord
+us.zoom.Zoom
+
+# Multimedia
+org.kde.kdenlive
+org.audacityteam.Audacity
+com.obsproject.Studio
+
+# Graphics
+org.gimp.GIMP
+org.inkscape.Inkscape
+org.kde.krita
+
+# Development
+com.visualstudio.code
+io.neovim.nvim
+org.jetbrains.IntelliJ-IDEA-Community
+
+# Gaming
+com.valvesoftware.Steam
+net.lutris.Lutris
+
+# Utilities
+com.github.tchx84.Flatseal
+io.github.flattool.Warehouse

@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# SIMURA OS — first-boot configuration.
+#
+# Runs once on the FIRST boot of an installed SIMURA system (not on every
+# live ISO boot — the marker file lives on the persistent root). Tasks:
+#
+#   1. Enable + configure UFW (deny in, allow out, allow established).
+#   2. Enable fail2ban + AppArmor + auditd.
+#   3. Install Ollama (if not already present) via the official installer.
+#   4. Pull the default model (~2 GB) in the background if connected.
+#   5. Refresh font cache + icon cache + plymouth theme.
+#   6. Write a "SIMURA Tips" desktop file the user can dismiss.
+#
+# This script is intentionally idempotent — re-running it is safe.
+
+set -euo pipefail
+
+MARKER=/var/lib/simura/firstboot.done
+mkdir -p "$(dirname "$MARKER")"
+
+log() { printf '\033[36m[simura-firstboot]\033[0m %s\n' "$*"; }
+warn(){ printf '\033[33m[simura-firstboot]\033[0m WARN: %s\n' "$*"; }
+
+# ---------- UFW -------------------------------------------------------------
+if command -v ufw >/dev/null 2>&1; then
+    log "configuring UFW"
+    ufw --force reset >/dev/null
+    ufw default deny incoming
+    ufw default allow outgoing
+    # Allow established/related — ufw's default ruleset already does this,
+    # but we're explicit:
+    ufw allow OUT 53/udp        comment 'DNS'
+    ufw allow OUT 80,443/tcp    comment 'HTTP(S)'
+    ufw allow OUT 123/udp       comment 'NTP'
+    ufw --force enable
+fi
+
+# ---------- fail2ban / AppArmor / auditd -----------------------------------
+for svc in fail2ban apparmor auditd; do
+    if systemctl list-unit-files "${svc}.service" >/dev/null 2>&1; then
+        log "enabling ${svc}"
+        systemctl enable --now "${svc}.service" || warn "failed to enable ${svc}"
+    fi
+done
+
+# ---------- Ollama ----------------------------------------------------------
+if ! command -v ollama >/dev/null 2>&1; then
+    log "installing Ollama (official tarball)"
+    if curl -fsSL https://ollama.com/install.sh -o /tmp/ollama-install.sh; then
+        sh /tmp/ollama-install.sh || warn "ollama installer failed; user can retry later"
+    else
+        warn "no internet — skipping Ollama install (rerun simura-pull-models later)"
+    fi
+fi
+
+if command -v ollama >/dev/null 2>&1; then
+    log "enabling ollama.service"
+    systemctl enable --now ollama.service || warn "failed to start ollama.service"
+fi
+
+# ---------- Pull default model (best-effort, in background) ----------------
+if command -v ollama >/dev/null 2>&1; then
+    log "scheduling default-model pull in background"
+    systemd-run --unit=simura-pull-default-model --collect \
+        /usr/local/bin/simura-pull-models llama3.2:3b \
+        || warn "failed to schedule model pull"
+fi
+
+# ---------- Caches ----------------------------------------------------------
+log "refreshing icon / font / plymouth caches"
+fc-cache -f >/dev/null 2>&1 || true
+gtk-update-icon-cache -fq /usr/share/icons/hicolor 2>/dev/null || true
+update-mime-database /usr/share/mime 2>/dev/null || true
+plymouth-set-default-theme -R simura 2>/dev/null || true
+
+# ---------- Welcome notification --------------------------------------------
+cat > /etc/skel/Desktop/Welcome-to-SIMURA.desktop <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Welcome to SIMURA OS
+Comment=Quick tour of SIMURA OS features
+Exec=xdg-open https://github.com/ahmedkadry35/SIMURA-OS/blob/main/docs/WELCOME.md
+Icon=simura-logo
+Terminal=false
+EOF
+chmod +x /etc/skel/Desktop/Welcome-to-SIMURA.desktop 2>/dev/null || true
+
+touch "$MARKER"
+log "done"

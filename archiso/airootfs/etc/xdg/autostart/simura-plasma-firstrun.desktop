@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=SIMURA Plasma First-Run Setup
+Exec=/usr/local/bin/simura-plasma-firstrun
+OnlyShowIn=KDE;
+X-KDE-autostart-phase=2
+NoDisplay=true

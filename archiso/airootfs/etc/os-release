@@ -1,0 +1,13 @@
+NAME="SIMURA OS"
+PRETTY_NAME="SIMURA OS"
+ID=simura
+ID_LIKE=arch
+BUILD_ID=rolling
+VERSION_ID=rolling
+ANSI_COLOR="38;2;0;255;255"
+HOME_URL="https://github.com/ahmedkadry35/SIMURA-OS"
+DOCUMENTATION_URL="https://github.com/ahmedkadry35/SIMURA-OS/blob/main/docs"
+SUPPORT_URL="https://github.com/ahmedkadry35/SIMURA-OS/issues"
+BUG_REPORT_URL="https://github.com/ahmedkadry35/SIMURA-OS/issues"
+PRIVACY_POLICY_URL="https://github.com/ahmedkadry35/SIMURA-OS/blob/main/docs/PRIVACY.md"
+LOGO=simura-logo

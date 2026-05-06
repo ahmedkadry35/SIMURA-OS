@@ -1,0 +1,72 @@
+#
+# SIMURA OS — Plymouth boot splash script.
+#
+# Layout:
+#   - background.png is stretched to screen
+#   - logo.png is centered horizontally, 40% from the top
+#   - logo gently pulses (0.85 → 1.0 → 0.85 alpha) at ~1 Hz
+#   - a thin progress bar sits below the logo
+#   - status messages render at the bottom 20% of the screen
+
+Window.SetBackgroundTopColor   (0.024, 0.012, 0.102);  # #06031a
+Window.SetBackgroundBottomColor(0.063, 0.027, 0.278);  # #100747
+
+screen_width  = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+# Logo image
+logo.image  = Image("logo.png");
+logo.sprite = Sprite(logo.image);
+logo.x      = screen_width  / 2 - logo.image.GetWidth()  / 2;
+logo.y      = screen_height * 0.40 - logo.image.GetHeight() / 2;
+logo.sprite.SetPosition(logo.x, logo.y, 1);
+
+# Pulse timer
+progress = 0;
+fun refresh_callback() {
+    progress++;
+    # Pulse alpha between 0.85 and 1.0 every ~50 ticks
+    pulse = 0.925 + 0.075 * Math.Cos(progress / 8.0);
+    logo.sprite.SetOpacity(pulse);
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+# Boot progress bar (slim, just below the logo)
+bar.original_image = Image("progress_bar.png");
+bar.x = screen_width  / 2 - bar.original_image.GetWidth() / 2;
+bar.y = logo.y + logo.image.GetHeight() + 60;
+bar.sprite = Sprite();
+bar.sprite.SetPosition(bar.x, bar.y, 1);
+
+fun progress_callback(duration, prog) {
+    if (prog > 1) prog = 1;
+    w = Math.Int(bar.original_image.GetWidth() * prog);
+    if (w < 1) w = 1;
+    bar.sprite.SetImage(bar.original_image.Crop(0, 0, w,
+        bar.original_image.GetHeight()));
+}
+Plymouth.SetBootProgressFunction(progress_callback);
+
+# Status / message line
+message_sprite = Sprite();
+message_sprite.SetPosition(0, screen_height * 0.85, 10);
+
+fun message_callback(text) {
+    message_image = Image.Text(text, 1.0, 1.0, 1.0, 1.0, "Sans 12");
+    message_sprite.SetImage(message_image);
+    message_sprite.SetX(screen_width / 2 - message_image.GetWidth() / 2);
+}
+Plymouth.SetMessageFunction(message_callback);
+
+fun display_password_callback(prompt, bullets) {
+    prompt_image = Image.Text(prompt + " [" + bullets + "]",
+                              1.0, 1.0, 1.0, 1.0, "Sans 12");
+    message_sprite.SetImage(prompt_image);
+    message_sprite.SetX(screen_width / 2 - prompt_image.GetWidth() / 2);
+}
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+
+fun display_normal_callback() {
+    message_sprite.SetImage(Image.Text(" ", 1, 1, 1, 1, "Sans 1"));
+}
+Plymouth.SetDisplayNormalFunction(display_normal_callback);

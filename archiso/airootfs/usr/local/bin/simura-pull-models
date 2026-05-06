@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# SIMURA OS — pull one or more Ollama models, with retries.
+# Usage: simura-pull-models [model ...]
+# Defaults to llama3.2:3b if no models are given.
+
+set -euo pipefail
+
+models=("$@")
+if [[ ${#models[@]} -eq 0 ]]; then
+    models=("llama3.2:3b")
+fi
+
+if ! command -v ollama >/dev/null 2>&1; then
+    echo "ollama not installed; run simura-firstboot first" >&2
+    exit 1
+fi
+
+# Wait for the daemon to be reachable.
+for _ in $(seq 1 30); do
+    if curl -fsS --max-time 2 http://localhost:11434/api/tags >/dev/null 2>&1; then
+        break
+    fi
+    sleep 2
+done
+
+for model in "${models[@]}"; do
+    for attempt in 1 2 3; do
+        echo "Pulling ${model} (attempt ${attempt}/3)..."
+        if ollama pull "${model}"; then
+            break
+        fi
+        sleep $((10 * attempt))
+    done
+done
