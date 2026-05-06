@@ -5,6 +5,7 @@ import json
 from unittest.mock import patch
 
 import pytest
+
 from simura.config import Config, load_config, save_config
 from simura.history import History, Message
 from simura.ollama import OllamaClient, OllamaError
