@@ -112,7 +112,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: branding-rendered
+          # the output dir is .rendered/ (dotfile), so the artifact action
+          # needs include-hidden-files: true to actually upload it.
           path: branding/.rendered/
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 14
 
