@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# SIMURA OS: apply look-and-feel + bottom-center floating panel on first
+# Plasma session for this user. Idempotent via sentinel file.
+set -euo pipefail
+
+state="${XDG_STATE_HOME:-$HOME/.local/state}/simura"
+sentinel="$state/firstrun-applied"
+mkdir -p "$state"
+
+if [ -e "$sentinel" ]; then
+    exit 0
+fi
+
+# Wait until Plasma's shell is up so dbus calls resolve.
+for _ in $(seq 1 30); do
+    if qdbus org.kde.plasmashell /PlasmaShell >/dev/null 2>&1; then
+        break
+    fi
+    sleep 1
+done
+
+# Apply the SIMURA look-and-feel package (color scheme + plasma theme +
+# splash + cursor); ignores layout because Plasma keeps user layout by
+# default.
+if command -v plasma-apply-lookandfeel >/dev/null 2>&1; then
+    plasma-apply-lookandfeel -a org.simura.desktop || true
+fi
+if command -v plasma-apply-colorscheme >/dev/null 2>&1; then
+    plasma-apply-colorscheme SIMURA || true
+fi
+if command -v plasma-apply-desktoptheme >/dev/null 2>&1; then
+    plasma-apply-desktoptheme SIMURA || true
+fi
+if command -v plasma-apply-wallpaperimage >/dev/null 2>&1; then
+    plasma-apply-wallpaperimage \
+        /usr/share/wallpapers/SIMURA/contents/images/3840x2160.png || true
+fi
+
+# Force-apply the bottom-center floating panel layout via the Plasma
+# scripting interface.
+layout=/usr/share/plasma/look-and-feel/org.simura.desktop/contents/layouts/org.simura.desktop-layout.js
+if [ -f "$layout" ]; then
+    qdbus org.kde.plasmashell /PlasmaShell evaluateScript \
+        "$(cat "$layout")" || true
+fi
+
+touch "$sentinel"

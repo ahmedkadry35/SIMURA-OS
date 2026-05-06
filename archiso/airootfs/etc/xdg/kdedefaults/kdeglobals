@@ -1,19 +1,9 @@
-# SIMURA OS — KDE-wide defaults.
-# Selects the SIMURA color scheme, Kvantum widget style, Papirus icons, and
-# Roboto/JetBrains Mono fonts.
-
 [General]
-BrowserApplication=firefox.desktop
 ColorScheme=SIMURA
 Name=SIMURA
+shadeSortColumn=true
 TerminalApplication=konsole
 TerminalService=org.kde.konsole.desktop
-fixed=JetBrains Mono,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-font=Roboto,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-menuFont=Roboto,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-shadeSortColumn=true
-smallestReadableFont=Roboto,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-toolBarFont=Roboto,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [Icons]
 Theme=Papirus-Dark
@@ -21,8 +11,10 @@ Theme=Papirus-Dark
 [KDE]
 LookAndFeelPackage=org.simura.desktop
 SingleClick=false
+ShowDeleteCommand=false
 contrast=4
 widgetStyle=kvantum
+ColorScheme=SIMURA
 
 [KFileDialog Settings]
 Allow Expansion=false

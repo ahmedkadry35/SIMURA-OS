@@ -205,6 +205,37 @@ cp ai-assistant/resources/simura-assistant.desktop \
 cp branding/.rendered/simura-logo-256.png \
    "${profile}/airootfs/usr/share/icons/hicolor/256x256/apps/simura-assistant.png"
 
+# Mirror the SIMURA Plasma config into /root/.config so the live ISO
+# autologin user (root) gets the same theme as fresh installs.
+mkdir -p "${profile}/airootfs/root/.config" \
+         "${profile}/airootfs/root/.local/share/color-schemes" \
+         "${profile}/airootfs/root/.local/share/konsole" \
+         "${profile}/airootfs/root/.config/Kvantum/SIMURA" \
+         "${profile}/airootfs/root/.config/gtk-3.0" \
+         "${profile}/airootfs/root/.config/gtk-4.0" \
+         "${profile}/airootfs/root/.config/fastfetch" \
+         "${profile}/airootfs/root/.config/neofetch"
+cp themes/plasma/SIMURA.colors \
+   "${profile}/airootfs/root/.local/share/color-schemes/SIMURA.colors"
+cp themes/plasma/kdeglobals "${profile}/airootfs/root/.config/kdeglobals"
+cp themes/plasma/kwinrc     "${profile}/airootfs/root/.config/kwinrc"
+cp -r themes/kvantum/SIMURA/. "${profile}/airootfs/root/.config/Kvantum/SIMURA/"
+cat > "${profile}/airootfs/root/.config/Kvantum/kvantum.kvconfig" <<EOF_KV
+[General]
+theme=SIMURA
+EOF_KV
+cp themes/konsole/SIMURA.profile     "${profile}/airootfs/root/.local/share/konsole/SIMURA.profile"
+cp themes/konsole/SIMURA.colorscheme "${profile}/airootfs/root/.local/share/konsole/SIMURA.colorscheme"
+cp themes/gtk/gtk-3.0/settings.ini "${profile}/airootfs/root/.config/gtk-3.0/settings.ini"
+cp themes/gtk/gtk-4.0/settings.ini "${profile}/airootfs/root/.config/gtk-4.0/settings.ini"
+# Also mirror starship + fastfetch/neofetch configs from /etc/skel for root
+cp -r "${profile}/airootfs/etc/skel/.config/fastfetch/." \
+      "${profile}/airootfs/root/.config/fastfetch/" 2>/dev/null || true
+cp -r "${profile}/airootfs/etc/skel/.config/neofetch/." \
+      "${profile}/airootfs/root/.config/neofetch/" 2>/dev/null || true
+cp "${profile}/airootfs/etc/skel/.config/starship.toml" \
+   "${profile}/airootfs/root/.config/starship.toml" 2>/dev/null || true
+
 echo "==> running mkarchiso"
 rm -rf .work-archiso
 mkdir -p .work-archiso
